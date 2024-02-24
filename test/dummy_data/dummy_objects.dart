@@ -2,6 +2,10 @@ import 'package:ditonton/data/models/movie_table.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/movie_detail.dart';
+import 'package:ditonton/domain/entities/tv_series.dart';
+import 'package:ditonton/domain/entities/tv_series_detail.dart';
+
+// Movie Dummy Data
 
 final testMovie = Movie(
   adult: false,
@@ -57,3 +61,40 @@ final testMovieMap = {
   'posterPath': 'posterPath',
   'title': 'title',
 };
+
+// Tv Series Dummy Data
+
+final testTvSeries = TvSeries(
+  backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
+  firstAirDate: '2002-05-01',
+  genreIds: [14, 28],
+  id: 557,
+  name: 'testing',
+  originCountry: ['US'],
+  originalLanguage: 'en',
+  originalName: 'testing',
+  overview: 'overview',
+  popularity: 60.441,
+  posterPath: '/rweIrveL43TaxUN0akQEaAXL6x0.jpg',
+  voteAverage: 7.2,
+  voteCount: 13507,
+);
+
+final testTvSeriesList = [testMovie];
+
+final testTvSeriesDetail = TvSeriesDetail(
+  backdropPath: 'backdropPath',
+  episodeRunTime: [120],
+  genres: [Genre(id: 1, name: 'Action')],
+  id: 1,
+  overview: 'overview',
+  posterPath: 'posterPath',
+  firstAirDate: '2002-05-01',
+  name: 'name',
+  voteAverage: 1,
+  voteCount: 1,
+  originalName: 'originalName',
+  originalLanguage: 'originalLanguage',
+  originCountry: ['US'],
+  popularity: 1,
+);

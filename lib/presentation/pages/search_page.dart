@@ -34,7 +34,7 @@ class SearchPage extends StatelessWidget {
             SizedBox(height: 16),
             Text(
               'Search Result',
-              style: kHeading6,
+              style: kTitleLarge,
             ),
             Consumer<MovieSearchNotifier>(
               builder: (context, data, child) {
