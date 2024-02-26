@@ -1,4 +1,5 @@
 import 'package:ditonton/data/models/movie/movie_table.dart';
+import 'package:ditonton/data/models/tv_Series/tv_series_table.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/movie_detail.dart';
@@ -83,8 +84,8 @@ final testTvSeries = TvSeries(
 final testTvSeriesList = [testMovie];
 
 final testTvSeriesDetail = TvSeriesDetail(
-  backdropPath: 'backdropPath',
-  episodeRunTime: [120],
+  backdropPath: '/6LWy0jvMpmjoS9fojNgHIKoWL05.jpg',
+  episodeRunTime: [60],
   genres: [Genre(id: 1, name: 'Action')],
   id: 1,
   overview: 'overview',
@@ -98,3 +99,24 @@ final testTvSeriesDetail = TvSeriesDetail(
   originCountry: ['US'],
   popularity: 1,
 );
+
+final testWatchlistTvSeries = TvSeries.watchlist(
+  id: 1,
+  name: 'name',
+  posterPath: 'posterPath',
+  overview: 'overview',
+);
+
+final testTvSeriesTable = TvSeriesTable(
+  id: 1,
+  name: 'name',
+  posterPath: 'posterPath',
+  overview: 'overview',
+);
+
+final testTvSeriesMap = {
+  'id': 1,
+  'overview': 'overview',
+  'posterPath': 'posterPath',
+  'name': 'name',
+};

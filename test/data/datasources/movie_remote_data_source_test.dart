@@ -33,8 +33,8 @@ void main() {
       // arrange
       when(mockHttpClient
               .get(Uri.parse('$BASE_URL/movie/now_playing?$API_KEY')))
-          .thenAnswer((_) async =>
-              http.Response(readJson('dummy_data/movie/now_playing.json'), 200));
+          .thenAnswer((_) async => http.Response(
+              readJson('dummy_data/movie/now_playing.json'), 200));
       // act
       final result = await dataSource.getNowPlayingMovies();
       // assert
@@ -56,9 +56,9 @@ void main() {
   });
 
   group('get Popular Movies', () {
-    final tMovieList =
-        MovieResponse.fromJson(json.decode(readJson('dummy_data/movie/popular.json')))
-            .movieList;
+    final tMovieList = MovieResponse.fromJson(
+            json.decode(readJson('dummy_data/movie/popular.json')))
+        .movieList;
 
     test('should return list of movies when response is success (200)',
         () async {
@@ -121,8 +121,8 @@ void main() {
     test('should return movie detail when the response code is 200', () async {
       // arrange
       when(mockHttpClient.get(Uri.parse('$BASE_URL/movie/$tId?$API_KEY')))
-          .thenAnswer((_) async =>
-              http.Response(readJson('dummy_data/movie/movie_detail.json'), 200));
+          .thenAnswer((_) async => http.Response(
+              readJson('dummy_data/movie/movie_detail.json'), 200));
       // act
       final result = await dataSource.getMovieDetail(tId);
       // assert
@@ -142,8 +142,8 @@ void main() {
   });
 
   group('get movie recommendations', () {
-    final tMovieList = MovieResponse.fromJson(
-            json.decode(readJson('dummy_data/movie/movie_recommendations.json')))
+    final tMovieList = MovieResponse.fromJson(json
+            .decode(readJson('dummy_data/movie/movie_recommendations.json')))
         .movieList;
     final tId = 1;
 
@@ -174,8 +174,8 @@ void main() {
   });
 
   group('search movies', () {
-    final tSearchResult = MovieResponse.fromJson(
-            json.decode(readJson('dummy_data/movie/search_spiderman_movie.json')))
+    final tSearchResult = MovieResponse.fromJson(json
+            .decode(readJson('dummy_data/movie/search_spiderman_movie.json')))
         .movieList;
     final tQuery = 'Spiderman';
 
