@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2024-02-24 08:14:25</td>
+            <td class="headerValue">2024-02-24 21:29:22</td>
             <td></td>
           </tr>
           <tr><td><img src="../../../../../../../../glass.png" width=3 height=3 alt=""></td></tr>
@@ -61,13 +61,13 @@
 <a name="3"><span class="lineNum">       3 </span>            : import 'package:ditonton/domain/entities/tv_series.dart';</a>
 <a name="4"><span class="lineNum">       4 </span>            : import 'package:ditonton/domain/repositories/tv_series_repository.dart';</a>
 <a name="5"><span class="lineNum">       5 </span>            : </a>
-<a name="6"><span class="lineNum">       6 </span>            : class GetNowPlayingTvSeries {</a>
+<a name="6"><span class="lineNum">       6 </span>            : class GetAiringTodayTvSeries {</a>
 <a name="7"><span class="lineNum">       7 </span>            :   final TvSeriesRepository repository;</a>
 <a name="8"><span class="lineNum">       8 </span>            : </a>
-<a name="9"><span class="lineNum">       9 </span><span class="lineCov">          2 :   GetNowPlayingTvSeries(this.repository);</span></a>
+<a name="9"><span class="lineNum">       9 </span><span class="lineCov">          2 :   GetAiringTodayTvSeries(this.repository);</span></a>
 <a name="10"><span class="lineNum">      10 </span>            : </a>
 <a name="11"><span class="lineNum">      11 </span><span class="lineCov">          2 :   Future&lt;Either&lt;Failure, List&lt;TvSeries&gt;&gt;&gt; execute() {</span></a>
-<a name="12"><span class="lineNum">      12 </span><span class="lineCov">          4 :     return repository.getNowPlayingTvSeries();</span></a>
+<a name="12"><span class="lineNum">      12 </span><span class="lineCov">          4 :     return repository.getAiringTodayTvSeries();</span></a>
 <a name="13"><span class="lineNum">      13 </span>            :   }</a>
 <a name="14"><span class="lineNum">      14 </span>            : }</a>
 </pre>
