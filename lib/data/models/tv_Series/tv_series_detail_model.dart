@@ -210,7 +210,7 @@ class TvSeriesDetailResponse extends Equatable {
       ];
 }
 
-class CreatedBy {
+class CreatedBy extends Equatable{
   final int id;
   final String creditId;
   final String name;
@@ -240,9 +240,12 @@ class CreatedBy {
         "gender": gender,
         "profile_path": profilePath,
       };
+      
+        @override
+        List<Object?> get props => [id, creditId, name, gender, profilePath];
 }
 
-class Genre {
+class Genre extends Equatable {
   final int id;
   final String name;
 
@@ -260,9 +263,15 @@ class Genre {
         "id": id,
         "name": name,
       };
+      
+        @override
+        List<Object?> get props => [
+          id,
+          name,
+        ];
 }
 
-class LastEpisodeToAir {
+class LastEpisodeToAir extends Equatable {
   final int id;
   final String name;
   final String overview;
@@ -322,9 +331,26 @@ class LastEpisodeToAir {
         "show_id": showId,
         "still_path": stillPath,
       };
+      
+        @override
+        List<Object?> get props => [
+          id,
+          name,
+          overview,
+          voteAverage,
+          voteCount,
+          airDate,
+          episodeNumber,
+          productionCode,
+          runtime,
+          seasonNumber,
+          showId,
+          stillPath,
+        
+        ];
 }
 
-class Network {
+class Network extends Equatable{
   final int id;
   final String? logoPath;
   final String name;
@@ -350,9 +376,17 @@ class Network {
         "name": name,
         "origin_country": originCountry,
       };
+      
+        @override
+        List<Object?> get props => [
+          id,
+          logoPath,
+          name,
+          originCountry,
+        ];
 }
 
-class ProductionCountry {
+class ProductionCountry extends Equatable {
   final String iso31661;
   final String name;
 
@@ -371,9 +405,15 @@ class ProductionCountry {
         "iso_3166_1": iso31661,
         "name": name,
       };
+      
+        @override
+        List<Object?> get props => [
+          iso31661,
+          name,
+        ];
 }
 
-class Season {
+class Season extends Equatable {
   final DateTime airDate;
   final int episodeCount;
   final int id;
@@ -416,9 +456,22 @@ class Season {
         "season_number": seasonNumber,
         "vote_average": voteAverage,
       };
+      
+        @override
+        List<Object?> get props => [
+          airDate,
+          episodeCount,
+          id,
+          name,
+          overview,
+          posterPath,
+          seasonNumber,
+          voteAverage,
+        
+        ];
 }
 
-class SpokenLanguage {
+class SpokenLanguage extends Equatable {
   final String englishName;
   final String iso6391;
   final String name;
@@ -440,4 +493,11 @@ class SpokenLanguage {
         "iso_639_1": iso6391,
         "name": name,
       };
+      
+        @override
+        List<Object?> get props => [
+          englishName,
+          iso6391,
+          name,
+        ];
 }
