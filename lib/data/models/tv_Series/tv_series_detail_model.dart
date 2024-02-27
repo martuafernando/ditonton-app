@@ -414,7 +414,7 @@ class ProductionCountry extends Equatable {
 }
 
 class Season extends Equatable {
-  final DateTime airDate;
+  final String? airDate;
   final int episodeCount;
   final int id;
   final String name;
@@ -435,7 +435,7 @@ class Season extends Equatable {
   });
 
   factory Season.fromJson(Map<String, dynamic> json) => Season(
-        airDate: DateTime.parse(json["air_date"]),
+        airDate: json["air_date"],
         episodeCount: json["episode_count"],
         id: json["id"],
         name: json["name"],
@@ -446,8 +446,7 @@ class Season extends Equatable {
       );
 
   Map<String, dynamic> toJson() => {
-        "air_date":
-            "${airDate.year.toString().padLeft(4, '0')}-${airDate.month.toString().padLeft(2, '0')}-${airDate.day.toString().padLeft(2, '0')}",
+        "air_date": airDate,
         "episode_count": episodeCount,
         "id": id,
         "name": name,

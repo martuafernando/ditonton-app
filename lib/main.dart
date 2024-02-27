@@ -1,6 +1,7 @@
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/utils.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
+import 'package:ditonton/presentation/pages/airing_today_tv_series_page.dart';
 import 'package:ditonton/presentation/pages/movie_detail_page.dart';
 import 'package:ditonton/presentation/pages/home_page.dart';
 import 'package:ditonton/presentation/pages/popular_movies_page.dart';
@@ -10,6 +11,7 @@ import 'package:ditonton/presentation/pages/top_rated_movies_page.dart';
 import 'package:ditonton/presentation/pages/top_rated_tv_series_page.dart';
 import 'package:ditonton/presentation/pages/tv_series_detail_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_page.dart';
+import 'package:ditonton/presentation/provider/airing_today_tv_series_notifier.dart';
 import 'package:ditonton/presentation/provider/movie_detail_notifier.dart';
 import 'package:ditonton/presentation/provider/movie_list_notifier.dart';
 import 'package:ditonton/presentation/provider/movie_search_notifier.dart';
@@ -62,6 +64,9 @@ class MyApp extends StatelessWidget {
           create: (_) => di.locator<TvSeriesListNotifier>(),
         ),
         ChangeNotifierProvider(
+          create: (_) => di.locator<AiringTodayTvSeriesNotifier>(),
+        ),
+        ChangeNotifierProvider(
           create: (_) => di.locator<TvSeriesDetailNotifier>(),
         ),
         ChangeNotifierProvider(
@@ -88,6 +93,8 @@ class MyApp extends StatelessWidget {
           switch (settings.name) {
             case '/home':
               return MaterialPageRoute(builder: (_) => HomeMoviePage());
+            case AiringTodayTvSeriesPage.ROUTE_NAME:
+              return MaterialPageRoute(builder: (_) => AiringTodayTvSeriesPage());
             case PopularMoviesPage.ROUTE_NAME:
               return CupertinoPageRoute(builder: (_) => PopularMoviesPage());
             case PopularTvSeriesPage.ROUTE_NAME:

@@ -276,7 +276,7 @@ void main() {
       ],
       seasons: [
         Season(
-            airDate: DateTime.parse("2010-12-05"),
+            airDate: "2010-12-05",
             episodeCount: 272,
             id: 3627,
             name: "Specials",
@@ -285,7 +285,7 @@ void main() {
             seasonNumber: 0,
             voteAverage: 0),
         Season(
-            airDate: DateTime.parse("2011-04-17"),
+            airDate: "2011-04-17",
             episodeCount: 10,
             id: 3624,
             name: "Season 1",
@@ -295,7 +295,7 @@ void main() {
             seasonNumber: 1,
             voteAverage: 8.3),
         Season(
-            airDate: DateTime.parse("2012-04-01"),
+            airDate: "2012-04-01",
             episodeCount: 10,
             id: 3625,
             name: "Season 2",
@@ -305,7 +305,7 @@ void main() {
             seasonNumber: 2,
             voteAverage: 8.2),
         Season(
-            airDate: DateTime.parse("2013-03-31"),
+            airDate: "2013-03-31",
             episodeCount: 10,
             id: 3626,
             name: "Season 3",
