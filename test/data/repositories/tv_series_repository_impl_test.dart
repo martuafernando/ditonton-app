@@ -231,7 +231,7 @@ void main() {
               "In the aftermath of the devastating attack on King's Landing, Daenerys must face the survivors.",
           voteAverage: 4.809,
           voteCount: 241,
-          airDate: DateTime.parse("2019-05-19"),
+          airDate: "2019-05-19",
           episodeNumber: 6,
           productionCode: "806",
           runtime: 80,

@@ -3,39 +3,6 @@ import 'package:ditonton/domain/entities/tv_series_detail.dart';
 import 'package:equatable/equatable.dart';
 
 class TvSeriesDetailResponse extends Equatable {
-  final bool adult;
-  final String backdropPath;
-  final List<CreatedBy> createdBy;
-  final List<int> episodeRunTime;
-  final String firstAirDate;
-  final List<GenreModel> genres;
-  final String homepage;
-  final int id;
-  final bool inProduction;
-  final List<String> languages;
-  final String lastAirDate;
-  final LastEpisodeToAir lastEpisodeToAir;
-  final String name;
-  final dynamic nextEpisodeToAir;
-  final List<Network> networks;
-  final int numberOfEpisodes;
-  final int numberOfSeasons;
-  final List<String> originCountry;
-  final String originalLanguage;
-  final String originalName;
-  final String overview;
-  final double popularity;
-  final String posterPath;
-  final List<Network> productionCompanies;
-  final List<ProductionCountry> productionCountries;
-  final List<Season> seasons;
-  final List<SpokenLanguage> spokenLanguages;
-  final String status;
-  final String tagline;
-  final String type;
-  final double voteAverage;
-  final int voteCount;
-
   TvSeriesDetailResponse({
     required this.adult,
     required this.backdropPath,
@@ -71,9 +38,42 @@ class TvSeriesDetailResponse extends Equatable {
     required this.voteCount,
   });
 
+  final bool adult;
+  final String? backdropPath;
+  final List<CreatedBy> createdBy;
+  final List<int> episodeRunTime;
+  final String firstAirDate;
+  final List<GenreModel> genres;
+  final String homepage;
+  final int id;
+  final bool inProduction;
+  final List<String> languages;
+  final String lastAirDate;
+  final LastEpisodeToAir lastEpisodeToAir;
+  final String name;
+  final dynamic nextEpisodeToAir;
+  final List<Network> networks;
+  final int numberOfEpisodes;
+  final int numberOfSeasons;
+  final List<String> originCountry;
+  final String originalLanguage;
+  final String originalName;
+  final String overview;
+  final double popularity;
+  final String posterPath;
+  final List<Network> productionCompanies;
+  final List<ProductionCountry> productionCountries;
+  final List<Season> seasons;
+  final List<SpokenLanguage> spokenLanguages;
+  final String status;
+  final String tagline;
+  final String type;
+  final double voteAverage;
+  final int voteCount;
+
   TvSeriesDetail toEntity() {
     return TvSeriesDetail(
-      backdropPath: backdropPath,
+      backdropPath: backdropPath ?? '',
       episodeRunTime: episodeRunTime,
       firstAirDate: firstAirDate,
       genres: this.genres.map((genre) => genre.toEntity()).toList(),
@@ -214,7 +214,7 @@ class CreatedBy extends Equatable{
   final int id;
   final String creditId;
   final String name;
-  final int gender;
+  final int? gender;
   final String? profilePath;
 
   CreatedBy({
@@ -277,7 +277,7 @@ class LastEpisodeToAir extends Equatable {
   final String overview;
   final double voteAverage;
   final int voteCount;
-  final DateTime airDate;
+  final String airDate;
   final int episodeNumber;
   final String productionCode;
   final int? runtime;
@@ -307,7 +307,7 @@ class LastEpisodeToAir extends Equatable {
         overview: json["overview"],
         voteAverage: json["vote_average"]?.toDouble(),
         voteCount: json["vote_count"],
-        airDate: DateTime.parse(json["air_date"]),
+        airDate: json["air_date"],
         episodeNumber: json["episode_number"],
         productionCode: json["production_code"],
         runtime: json["runtime"],
@@ -322,8 +322,7 @@ class LastEpisodeToAir extends Equatable {
         "overview": overview,
         "vote_average": voteAverage,
         "vote_count": voteCount,
-        "air_date":
-            "${airDate.year.toString().padLeft(4, '0')}-${airDate.month.toString().padLeft(2, '0')}-${airDate.day.toString().padLeft(2, '0')}",
+        "air_date": airDate,
         "episode_number": episodeNumber,
         "production_code": productionCode,
         "runtime": runtime,
