@@ -81,7 +81,7 @@ final testTvSeries = TvSeries(
   voteCount: 13507,
 );
 
-final testTvSeriesList = [testMovie];
+final testTvSeriesList = [testTvSeries];
 
 final testTvSeriesDetail = TvSeriesDetail(
   backdropPath: '/6LWy0jvMpmjoS9fojNgHIKoWL05.jpg',
