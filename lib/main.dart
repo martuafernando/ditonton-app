@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/utils.dart';
 import 'package:ditonton/presentation/bloc/airing_today_tv_series/airing_today_tv_series_bloc.dart';
@@ -27,13 +29,33 @@ import 'package:ditonton/presentation/pages/tv_series_detail_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/io_client.dart';
 import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
+import 'package:http/http.dart' as http;
 
-void main() {
-  di.init();
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final client = await getClient();
+  di.init(client: client);
   runApp(MyApp());
+}
+
+Future<http.Client> getClient() async {
+  final sslCert = await rootBundle.load('certificates/certificates.pem');
+  SecurityContext securityContext = SecurityContext(withTrustedRoots: false);
+  securityContext.setTrustedCertificatesBytes(sslCert.buffer.asInt8List());
+
+  HttpClient client = HttpClient(context: securityContext);
+  client.badCertificateCallback = (
+    X509Certificate cert,
+    String host,
+    int port,
+  ) =>
+      false;
+  return IOClient(client);
 }
 
 class MyApp extends StatelessWidget {
@@ -62,7 +84,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<MovieRecommendationsBloc>(),
         ),
-
         BlocProvider(
           create: (_) => di.locator<WatchlistTvSeriesBloc>(),
         ),
@@ -100,7 +121,8 @@ class MyApp extends StatelessWidget {
             case '/home':
               return MaterialPageRoute(builder: (_) => HomeMoviePage());
             case AiringTodayTvSeriesPage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => AiringTodayTvSeriesPage());
+              return MaterialPageRoute(
+                  builder: (_) => AiringTodayTvSeriesPage());
             case PopularMoviesPage.ROUTE_NAME:
               return CupertinoPageRoute(builder: (_) => PopularMoviesPage());
             case PopularTvSeriesPage.ROUTE_NAME:
