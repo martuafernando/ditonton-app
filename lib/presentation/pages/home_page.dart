@@ -365,9 +365,9 @@ class MovieList extends StatelessWidget {
 }
 
 class TvSeriesList extends StatelessWidget {
-  final List<TvSeries> tvSeries;
+  final List<TvSeries> tvSeriesList;
 
-  TvSeriesList(this.tvSeries);
+  TvSeriesList(this.tvSeriesList);
 
   @override
   Widget build(BuildContext context) {
@@ -376,7 +376,7 @@ class TvSeriesList extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          final movie = tvSeries[index];
+          final tvSeries = tvSeriesList[index];
           return Container(
             padding: const EdgeInsets.all(8),
             child: InkWell(
@@ -384,13 +384,13 @@ class TvSeriesList extends StatelessWidget {
                 Navigator.pushNamed(
                   context,
                   TvSeriesDetailPage.ROUTE_NAME,
-                  arguments: movie.id,
+                  arguments: tvSeries.id,
                 );
               },
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(16)),
                 child: CachedNetworkImage(
-                  imageUrl: '$BASE_IMAGE_URL${movie.posterPath}',
+                  imageUrl: '$BASE_IMAGE_URL${tvSeries.posterPath}',
                   placeholder: (context, url) => Center(
                     child: CircularProgressIndicator(),
                   ),
@@ -400,7 +400,7 @@ class TvSeriesList extends StatelessWidget {
             ),
           );
         },
-        itemCount: tvSeries.length,
+        itemCount: tvSeriesList.length,
       ),
     );
   }

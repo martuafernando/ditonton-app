@@ -38,8 +38,8 @@ class _AiringTodayTvSeriesPageState extends State<AiringTodayTvSeriesPage> {
             if (state is AiringTodayTvSeriesLoaded) {
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  final movie = state.tvSeries[index];
-                  return TvSeriesCard(movie);
+                  final tvSeries = state.tvSeries[index];
+                  return TvSeriesCard(tvSeries);
                 },
                 itemCount: state.tvSeries.length,
               );

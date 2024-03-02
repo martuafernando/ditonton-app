@@ -67,6 +67,7 @@ class WatchlistTvSeriesBloc
     LoadWatchlistStatus event,
     Emitter<WatchlistTvSeriesState> emit,
   ) async {
+    emit(WatchlistTvSeriesLoading());
     final bool isTvSeriesAdded = await getWatchListStatusTvSeries.execute(event.tvSeriesId);
     
     isTvSeriesAdded

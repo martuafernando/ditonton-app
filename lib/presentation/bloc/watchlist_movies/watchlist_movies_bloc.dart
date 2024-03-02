@@ -67,6 +67,7 @@ class WatchlistMoviesBloc
     LoadWatchlistStatus event,
     Emitter<WatchlistMoviesState> emit,
   ) async {
+    emit(WatchlistMoviesLoading());
     final bool isMoviesAdded = await getWatchListStatusMovies.execute(event.moviesId);
     
     isMoviesAdded
@@ -78,6 +79,7 @@ class WatchlistMoviesBloc
     LoadWatchlistMovies event,
     Emitter<WatchlistMoviesState> emit,
   ) async {
+    emit(WatchlistMoviesLoading());
     final result = await getWatchlistMovies.execute();
 
     result.fold(
