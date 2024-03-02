@@ -17,7 +17,7 @@ class _AiringTodayTvSeriesPageState extends State<AiringTodayTvSeriesPage> {
     super.initState();
     Future.microtask(() => context
         .read<AiringTodayTvSeriesBloc>()
-        .add(fetchAiringTodayTvSeries()));
+        .add(FetchAiringTodayTvSeries()));
   }
 
   @override

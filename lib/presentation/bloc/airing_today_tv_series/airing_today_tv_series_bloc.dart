@@ -12,7 +12,7 @@ class AiringTodayTvSeriesBloc
 
   AiringTodayTvSeriesBloc({required this.getAiringTodayTvSeries})
       : super(AiringTodayTvSeriesInitial()) {
-    on<fetchAiringTodayTvSeries>((event, emit) async {
+    on<FetchAiringTodayTvSeries>((event, emit) async {
       emit(AiringTodayTvSeriesLoading());
       final result = await getAiringTodayTvSeries.execute();
 

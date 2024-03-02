@@ -7,4 +7,4 @@ abstract class AiringTodayTvSeriesEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class fetchAiringTodayTvSeries extends AiringTodayTvSeriesEvent {}
+class FetchAiringTodayTvSeries extends AiringTodayTvSeriesEvent {}

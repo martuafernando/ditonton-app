@@ -1,11 +1,10 @@
-import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/common/utils.dart';
-import 'package:ditonton/presentation/provider/watchlist_movie_notifier.dart';
-import 'package:ditonton/presentation/provider/watchlist_tv_series_notifier.dart';
+import 'package:ditonton/presentation/bloc/watchlist_movies/watchlist_movies_bloc.dart';
+import 'package:ditonton/presentation/bloc/watchlist_tv_series/watchlist_tv_series_bloc.dart';
 import 'package:ditonton/presentation/widgets/movie_card_list.dart';
 import 'package:ditonton/presentation/widgets/tv_series_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WatchlistMoviesPage extends StatefulWidget {
   static const ROUTE_NAME = '/watchlist-movie';
@@ -19,12 +18,10 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<WatchlistMovieNotifier>(context, listen: false)
-            .fetchWatchlistMovies());
-    Future.microtask(() =>
-        Provider.of<WatchlistTvSeriesNotifier>(context, listen: false)
-            .fetchWatchlistTvSeries());
+    Future.microtask(
+        () => context.read<WatchlistMoviesBloc>().add(LoadWatchlistMovies()));
+    Future.microtask(
+        () => context.read<WatchlistTvSeriesBloc>().add(LoadWatchlistTvSeries()));
   }
 
   @override
@@ -34,10 +31,10 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
   }
 
   void didPopNext() {
-    Provider.of<WatchlistMovieNotifier>(context, listen: false)
-        .fetchWatchlistMovies();
-    Provider.of<WatchlistTvSeriesNotifier>(context, listen: false)
-        .fetchWatchlistTvSeries();
+    Future.microtask(
+        () => context.read<WatchlistMoviesBloc>().add(LoadWatchlistMovies()));
+    Future.microtask(
+        () => context.read<WatchlistTvSeriesBloc>().add(LoadWatchlistTvSeries()));
   }
 
   @override
@@ -77,51 +74,65 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Consumer<WatchlistMovieNotifier>(
-                builder: (context, data, child) {
-                  if (data.watchlistState == RequestState.Loading) {
+              child: BlocBuilder<WatchlistMoviesBloc, WatchlistMoviesState>(
+                builder: (context, state) {
+                  if (state is WatchlistMoviesLoading) {
                     return Center(
                       child: CircularProgressIndicator(),
                     );
-                  } else if (data.watchlistState == RequestState.Loaded) {
-                    return ListView.builder(
-                      itemBuilder: (context, index) {
-                        final movie = data.watchlistMovies[index];
-                        return MovieCard(movie);
-                      },
-                      itemCount: data.watchlistMovies.length,
-                    );
-                  } else {
-                    return Center(
-                      key: Key('error_message'),
-                      child: Text(data.message),
-                    );
                   }
+                  if (state is WatchlistMoviesLoaded) {
+                    return state.movies.length > 0
+                        ? ListView.builder(
+                            itemBuilder: (context, index) {
+                              final movie = state.movies[index];
+                              return MovieCard(movie);
+                            },
+                            itemCount: state.movies.length,
+                          )
+                        : Center(
+                            key: Key('empty_message'),
+                            child: Text('No watchlist movies'),
+                          );
+                  }
+                  return Center(
+                    key: Key('error_message'),
+                    child: Text(state is WatchlistMoviesError
+                        ? state.message
+                        : 'Unknown error'),
+                  );
                 },
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Consumer<WatchlistTvSeriesNotifier>(
-                builder: (context, data, child) {
-                  if (data.watchlistState == RequestState.Loading) {
+              child: BlocBuilder<WatchlistTvSeriesBloc, WatchlistTvSeriesState>(
+                builder: (context, state) {
+                  if (state is WatchlistTvSeriesLoading) {
                     return Center(
                       child: CircularProgressIndicator(),
                     );
-                  } else if (data.watchlistState == RequestState.Loaded) {
-                    return ListView.builder(
-                      itemBuilder: (context, index) {
-                        final tvSeries = data.watchlistTvSeries[index];
-                        return TvSeriesCard(tvSeries);
-                      },
-                      itemCount: data.watchlistTvSeries.length,
-                    );
-                  } else {
-                    return Center(
-                      key: Key('error_message'),
-                      child: Text(data.message),
-                    );
                   }
+                  if (state is WatchlistTvSeriesLoaded) {
+                    return state.tvSeries.length > 0
+                        ? ListView.builder(
+                            itemBuilder: (context, index) {
+                              final tvSeries = state.tvSeries[index];
+                              return TvSeriesCard(tvSeries);
+                            },
+                            itemCount: state.tvSeries.length,
+                          )
+                        : Center(
+                            key: Key('empty_message'),
+                            child: Text('No watchlist tv series'),
+                          );
+                  }
+                  return Center(
+                    key: Key('error_message'),
+                    child: Text(state is WatchlistTvSeriesError
+                        ? state.message
+                        : 'Unknown error'),
+                  );
                 },
               ),
             ),

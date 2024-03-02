@@ -51,7 +51,7 @@ void main() {
             .thenAnswer((_) async => Right(tvSeriesList));
         return bloc;
       },
-      act: (bloc) => bloc.add(fetchAiringTodayTvSeries()),
+      act: (bloc) => bloc.add(FetchAiringTodayTvSeries()),
       expect: () => [
         AiringTodayTvSeriesLoading(),
         AiringTodayTvSeriesLoaded(tvSeriesList),
@@ -66,7 +66,7 @@ void main() {
             .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
         return bloc;
       },
-      act: (bloc) => bloc.add(fetchAiringTodayTvSeries()),
+      act: (bloc) => bloc.add(FetchAiringTodayTvSeries()),
       expect: () => [
         AiringTodayTvSeriesLoading(),
         AiringTodayTvSeriesError('Server Failure'),
