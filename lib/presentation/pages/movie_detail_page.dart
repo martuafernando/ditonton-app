@@ -194,24 +194,30 @@ class DetailContent extends StatelessWidget {
                                         final movie =
                                             state.movieRecommendations[index];
                                         return Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                            child: CachedNetworkImage(
-                                              imageUrl:
-                                                  'https://image.tmdb.org/t/p/w500${movie.posterPath}',
-                                              placeholder: (context, url) =>
-                                                  Center(
-                                                child:
-                                                    CircularProgressIndicator(),
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                Navigator.pushReplacementNamed(context,
+                                                    MovieDetailPage.ROUTE_NAME,
+                                                    arguments: movie.id);
+                                              },
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                                child: CachedNetworkImage(
+                                                  imageUrl:
+                                                      'https://image.tmdb.org/t/p/w500${movie.posterPath}',
+                                                  placeholder: (context, url) =>
+                                                      Center(
+                                                    child:
+                                                        CircularProgressIndicator(),
+                                                  ),
+                                                  errorWidget:
+                                                      (context, url, error) =>
+                                                          Icon(Icons.error),
+                                                ),
                                               ),
-                                              errorWidget:
-                                                  (context, url, error) =>
-                                                      Icon(Icons.error),
-                                            ),
-                                          ),
-                                        );
+                                            ));
                                       },
                                       itemCount:
                                           state.movieRecommendations.length,

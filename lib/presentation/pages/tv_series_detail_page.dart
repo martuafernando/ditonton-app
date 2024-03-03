@@ -212,7 +212,7 @@ class DetailContent extends StatelessWidget {
                                                     const EdgeInsets.all(8.0),
                                                 child: GestureDetector(
                                                   onTap: () {
-                                                    Navigator.pushNamed(
+                                                    Navigator.pushReplacementNamed(
                                                         context,
                                                         TvSeriesDetailPage
                                                             .ROUTE_NAME,
