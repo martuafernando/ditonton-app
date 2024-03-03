@@ -79,6 +79,7 @@ class WatchlistTvSeriesBloc
     LoadWatchlistTvSeries event,
     Emitter<WatchlistTvSeriesState> emit,
   ) async {
+    emit(WatchlistTvSeriesLoading());
     final result = await getWatchlistTvSeries.execute();
 
     result.fold(
